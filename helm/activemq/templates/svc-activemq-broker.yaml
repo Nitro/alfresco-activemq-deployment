@@ -8,18 +8,18 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: {{ .Values.activemq.services.broker.type }}
+  type: {{ .Values.services.broker.type }}
   ports:
-  - port: {{ .Values.activemq.services.broker.ports.external.stomp | default 61613 }}
-    targetPort: {{ .Values.activemq.services.broker.ports.internal.stomp | default 61613 }}
+  - port: {{ .Values.services.broker.ports.external.stomp | default 61613 }}
+    targetPort: {{ .Values.services.broker.ports.internal.stomp | default 61613 }}
     name: stomp
     protocol: TCP
-  - port: {{ .Values.activemq.services.broker.ports.external.openwire | default 61616 }}
-    targetPort: {{ .Values.activemq.services.broker.ports.internal.openwire | default 61616 }}
+  - port: {{ .Values.services.broker.ports.external.openwire | default 61616 }}
+    targetPort: {{ .Values.services.broker.ports.internal.openwire | default 61616 }}
     name: openwire
     protocol: TCP
-  - port: {{ .Values.activemq.services.broker.ports.external.amqp | default 5672 }}
-    targetPort: {{ .Values.activemq.services.broker.ports.internal.amqp | default 5672 }}
+  - port: {{ .Values.services.broker.ports.external.amqp | default 5672 }}
+    targetPort: {{ .Values.services.broker.ports.internal.amqp | default 5672 }}
     name: amqp
     protocol: TCP
   selector:

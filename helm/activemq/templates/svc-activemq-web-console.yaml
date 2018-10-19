@@ -8,10 +8,10 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  type: {{ .Values.activemq.services.webConsole.type }}
+  type: {{ .Values.services.webConsole.type }}
   ports:
-  - port: {{ .Values.activemq.services.webConsole.ports.external.webConsole | default 8161 }}
-    targetPort: {{ .Values.activemq.services.webConsole.ports.internal.webConsole | default 8161 }}
+  - port: {{ .Values.services.webConsole.ports.external.webConsole | default 8161 }}
+    targetPort: {{ .Values.services.webConsole.ports.internal.webConsole | default 8161 }}
     name: web-console
     protocol: TCP
   selector:

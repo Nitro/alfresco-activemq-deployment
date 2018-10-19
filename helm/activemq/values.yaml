@@ -23,7 +23,7 @@ services:
         stomp: 61613
         amqp: 5672
         openwire: 61616      
-    name: "{{ .Values.activemq.image.configBrokerName }}"
+    name: "{{ .Values.image.configBrokerName }}"
     type: ClusterIP
   webConsole:
     ports:

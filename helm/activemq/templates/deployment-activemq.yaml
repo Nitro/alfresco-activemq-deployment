@@ -17,48 +17,48 @@ spec:
     spec:
       containers:
       - name: activemq
-        image: "{{ .Values.activemq.image.repository }}:{{ .Values.activemq.image.tag }}"
-        imagePullPolicy: {{ .Values.activemq.image.pullPolicy }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: ACTIVEMQ_CONFIG_MINMEMORY
-          value: "{{ .Values.activemq.image.configMinMemory }}"
+          value: "{{ .Values.image.configMinMemory }}"
         - name: ACTIVEMQ_CONFIG_MAXMEMORY
-          value: "{{ .Values.activemq.image.configMaxMemory }}"
+          value: "{{ .Values.image.configMaxMemory }}"
         - name: ACTIVEMQ_BROKER_NAME
-          value: "{{ .Values.activemq.image.configBrokerName }}"
+          value: "{{ .Values.image.configBrokerName }}"
         - name: ACTIVEMQ_ADMIN_LOGIN
-          value: "{{ .Values.activemq.image.configAdminLogin }}"
+          value: "{{ .Values.image.configAdminLogin }}"
         - name: ACTIVEMQ_ADMIN_PASSWORD	
-          value: "{{ .Values.activemq.image.configAdminPassword }}"
+          value: "{{ .Values.image.configAdminPassword }}"
         ports:
         - name: stomp
-          containerPort: {{ .Values.activemq.services.broker.ports.internal.stomp | default 61613 }}
+          containerPort: {{ .Values.services.broker.ports.internal.stomp | default 61613 }}
         - name: openwire
-          containerPort: {{ .Values.activemq.services.broker.ports.internal.openwire | default 61616 }}
+          containerPort: {{ .Values.services.broker.ports.internal.openwire | default 61616 }}
         - name: amqp
-          containerPort: {{ .Values.activemq.services.broker.ports.internal.amqp | default 5672 }}
+          containerPort: {{ .Values.services.broker.ports.internal.amqp | default 5672 }}
         - name: web-console
-          containerPort: {{ .Values.activemq.services.webConsole.ports.internal.webConsole | default 8161 }}
+          containerPort: {{ .Values.services.webConsole.ports.internal.webConsole | default 8161 }}
         readinessProbe:
           tcpSocket:
-            port: {{ .Values.activemq.services.broker.ports.internal.openwire | default 61616 }}
-          initialDelaySeconds: {{ .Values.activemq.readinessProbe.initialDelaySeconds }}
-          periodSeconds: {{ .Values.activemq.readinessProbe.periodSeconds }}
-          failureThreshold: {{ .Values.activemq.readinessProbe.failureThreshold }}
-          timeoutSeconds: {{ .Values.activemq.readinessProbe.timeoutSeconds }}
+            port: {{ .Values.services.broker.ports.internal.openwire | default 61616 }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+          failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
+          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         livenessProbe:
           tcpSocket:
-            port: {{ .Values.activemq.services.broker.ports.internal.openwire | default 61616 }}
-          initialDelaySeconds: {{ .Values.activemq.livenessProbe.initialDelaySeconds }}
-          periodSeconds: {{ .Values.activemq.livenessProbe.periodSeconds }}
-          failureThreshold: {{ .Values.activemq.livenessProbe.failureThreshold }}
-          timeoutSeconds: {{ .Values.activemq.livenessProbe.timeoutSeconds }}
+            port: {{ .Values.services.broker.ports.internal.openwire | default 61616 }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
         volumeMounts:
         - name: data
           mountPath: {{ .Values.persistence.mountPath }}
           subPath: {{ .Values.persistence.subPath }}
         resources:
-{{ toYaml .Values.activemq.resources | indent 12 }}
+{{ toYaml .Values.resources | indent 12 }}
       volumes:
       - name: data
         persistentVolumeClaim:

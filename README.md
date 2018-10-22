@@ -21,8 +21,8 @@ The following table lists some of the more important configurable parameters of 
 | --------------------------- | ----------------------------------------------------  | ----------------------- |
 | `adminUser.username`        | The admin user username                               | `admin`                 |
 | `adminUser.password`        | The admin user password                               | `admin`                 |
-| `resources.requests.memory` | The minimum memory for the broker                     | `512`                   |
-| `resources.limits.memory`   | The maximum memory for the broker                     | `2048`                  |
+| `resources.requests.memory` | The minimum memory for the broker                     | `512Mi`                 |
+| `resources.limits.memory`   | The maximum memory for the broker                     | `2048Mi`                |
 | `persistence.existingClaim` | The name of the persistent volume claim to use        | `alfresco-volume-claim` |
 | `nameOverride`              | An overriding name for the deployment and broker name | null                    |
 

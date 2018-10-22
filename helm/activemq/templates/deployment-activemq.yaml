@@ -21,15 +21,15 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: ACTIVEMQ_CONFIG_MINMEMORY
-          value: "{{ .Values.image.configMinMemory }}"
+          value: "{{ .Values.resources.requests.memory | replace "Mi" "" }}"
         - name: ACTIVEMQ_CONFIG_MAXMEMORY
-          value: "{{ .Values.image.configMaxMemory }}"
+          value: "{{ .Values.resources.limits.memory | replace "Mi" "" }}"
         - name: ACTIVEMQ_BROKER_NAME
-          value: "{{ .Values.image.configBrokerName }}"
+          value: "{{ template "activemq.fullname" . }}"
         - name: ACTIVEMQ_ADMIN_LOGIN
-          value: "{{ .Values.image.configAdminLogin }}"
+          value: "{{ .Values.adminUser.username }}"
         - name: ACTIVEMQ_ADMIN_PASSWORD	
-          value: "{{ .Values.image.configAdminPassword }}"
+          value: "{{ .Values.adminUser.password }}"
         ports:
         - name: stomp
           containerPort: {{ .Values.services.broker.ports.internal.stomp | default 61613 }}

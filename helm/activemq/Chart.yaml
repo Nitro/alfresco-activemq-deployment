@@ -1,4 +1,10 @@
 apiVersion: v1
 description: A Helm chart Providing Apache ActiveMQ.
 name: activemq
-version: 0.2
+version: 1.0
+appVersion: 5.15.6
+keywords:
+- activemq
+- message broker
+sources:
+- https://github.com/Alfresco/alfresco-activemq-deployment

@@ -1,7 +1,7 @@
 apiVersion: v1
 description: A Helm chart Providing Apache ActiveMQ.
 name: activemq
-version: 1.0.0
+version: 1.0.0-DEPLOY-645
 appVersion: 5.15.6
 keywords:
 - activemq

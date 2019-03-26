@@ -44,5 +44,5 @@ livenessProbe:
 
 persistence:
   existingClaim: "alfresco-volume-claim"
-  mountPath: "/data"
+  mountPath: "/opt/activemq/data"
   subPath: "alfresco-infrastructure/activemq-data"

@@ -8,6 +8,9 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+securityContext:
+  runAsUser: 33031
+  fsGroup: 1000
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
@@ -58,16 +61,7 @@ spec:
           mountPath: {{ .Values.persistence.mountPath }}
           subPath: {{ .Values.persistence.subPath }}
         resources:
-{{ toYaml .Values.resources | indent 12 }}
-      initContainers:
-        - name: init-fs
-          image: busybox
-          # command to allow activemq to write to EFS volume.
-          command: ["sh", "-c", "chown -R 33031:1000 {{ .Values.persistence.mountPath }}"]
-          volumeMounts:
-            - name: data
-              mountPath: {{ .Values.persistence.mountPath }}
-              subPath: {{ .Values.persistence.subPath }}
+{{ toYaml .Values.resources | indent 12 }}     
       volumes:
       - name: data
         persistentVolumeClaim:

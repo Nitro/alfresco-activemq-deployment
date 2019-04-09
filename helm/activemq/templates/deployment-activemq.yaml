@@ -61,7 +61,7 @@ spec:
           mountPath: {{ .Values.persistence.mountPath }}
           subPath: {{ .Values.persistence.subPath }}
         resources:
-{{ toYaml .Values.resources | indent 12 }}     
+{{ toYaml .Values.resources | indent 12 }}
       volumes:
       - name: data
         persistentVolumeClaim:

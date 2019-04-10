@@ -8,6 +8,8 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
+  securityContext:
+    fsGroup: 1000
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
@@ -16,7 +18,6 @@ spec:
         release: {{ .Release.Name }}
     spec:
       securityContext:
-        runAsUser: 33031
         fsGroup: 1000
       containers:
       - name: activemq

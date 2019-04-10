@@ -8,8 +8,6 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  securityContext:
-    fsGroup: 1000
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
@@ -17,8 +15,6 @@ spec:
         app: {{ template "activemq.fullname" . }}
         release: {{ .Release.Name }}
     spec:
-      securityContext:
-        fsGroup: 1000
       containers:
       - name: activemq
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

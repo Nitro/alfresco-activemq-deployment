@@ -63,6 +63,15 @@ spec:
           subPath: {{ .Values.persistence.subPath }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+      initContainers:
+        - name: init-fs
+          image: busybox
+          # command to allow repository to write to EFS volume.
+          command: ["sh", "-c", "chown -R 33031:1000 {{ .Values.persistence.mountPath }}"]
+          volumeMounts:
+            - name: data
+              mountPath: {{ .Values.persistence.mountPath }}
+              subPath: {{ .Values.persistence.subPath }}
       volumes:
       - name: data
         persistentVolumeClaim:

@@ -61,7 +61,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
       initContainers:
         - name: init-fs
-          image: busybox
+          image: {{ .Values.initContainer.image.repository }}:{{ .Values.initContainer.image.tag }}
           # command to allow repository to write to EFS volume.
           command: ["sh", "-c", "chown -R 33031:1000 {{ .Values.persistence.mountPath }}"]
           volumeMounts:
